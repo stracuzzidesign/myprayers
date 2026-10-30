@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>myPrayers — A voice to your prayers</title>
+<meta name="description" content="myPrayers reads your prayer lists aloud, with scripture and quiet music. Support and contact for the myPrayers iPhone app.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,300;0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,300;1,6..72,400&family=Archivo:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --navy-deep:#0C2D48;
+    --navy-lift:#0C4A6E;
+    --sky:#0EA5E9;
+    --ember:#FB923C;
+    --slate:#CBD5E1;
+    --paper:#F1F5F9;
+    --ink:#10283C;
+    --serif:"Newsreader",Georgia,"Times New Roman",serif;
+    --sans:"Archivo",system-ui,-apple-system,"Segoe UI",sans-serif;
+  }
+
+  *{box-sizing:border-box}
+
+  html{-webkit-text-size-adjust:100%}
+
+  body{
+    margin:0;
+    background:var(--navy-deep);
+    color:var(--paper);
+    font-family:var(--serif);
+    font-weight:300;
+    font-size:19px;
+    line-height:1.65;
+    -webkit-font-smoothing:antialiased;
+  }
+
+  a{color:inherit}
+
+  :focus-visible{
+    outline:2px solid var(--ember);
+    outline-offset:3px;
+    border-radius:2px;
+  }
+
+  .wrap{
+    width:100%;
+    max-width:62rem;
+    margin:0 auto;
+    padding:0 1.6rem;
+  }
+
+  /* ---------- hero ---------- */
+
+  .hero{
+    background:linear-gradient(180deg,var(--navy-lift) 0%,var(--navy-deep) 68%);
+    padding:clamp(3.5rem,9vw,7rem) 0 clamp(3.5rem,8vw,6rem);
+    text-align:center;
+  }
+
+  .mark{
+    width:min(28rem,86vw);
+    height:auto;
+    display:block;
+    margin:0 auto clamp(1.5rem,4vw,2.4rem);
+  }
+
+  .wordmark{
+    font-family:var(--serif);
+    font-weight:600;
+    font-size:clamp(3rem,11vw,5.25rem);
+    line-height:.95;
+    letter-spacing:-.022em;
+    margin:0;
+    color:#fff;
+  }
+
+  .tagline{
+    font-family:var(--serif);
+    font-style:italic;
+    font-weight:300;
+    font-size:clamp(1.15rem,3.6vw,1.5rem);
+    color:var(--slate);
+    margin:.85rem 0 0;
+    letter-spacing:.01em;
+  }
+
+  .platform{
+    font-family:var(--sans);
+    font-size:.82rem;
+    font-weight:500;
+    letter-spacing:.08em;
+    color:var(--sky);
+    margin:2.1rem 0 0;
+  }
+
+  /* ---------- light body ---------- */
+
+  .body{
+    background:var(--paper);
+    color:var(--ink);
+    padding:clamp(3.2rem,8vw,5.5rem) 0;
+  }
+
+  .lede{
+    font-size:clamp(1.3rem,4vw,1.72rem);
+    line-height:1.5;
+    font-weight:400;
+    max-width:34ch;
+    margin:0 0 clamp(2.8rem,7vw,4.2rem);
+    color:var(--ink);
+  }
+
+  h2{
+    font-family:var(--sans);
+    font-weight:600;
+    font-size:.84rem;
+    letter-spacing:.09em;
+    color:#5B7489;
+    margin:0 0 1.6rem;
+  }
+
+  .feature{
+    display:grid;
+    grid-template-columns:13.5rem 1fr;
+    gap:0 2.4rem;
+    padding:1.45rem 0;
+    border-top:1px solid #D7E0E8;
+    max-width:48rem;
+  }
+
+  .feature:last-of-type{border-bottom:1px solid #D7E0E8}
+
+  .feature h3{
+    font-family:var(--serif);
+    font-weight:500;
+    font-size:1.2rem;
+    line-height:1.35;
+    margin:0;
+    color:var(--navy-lift);
+  }
+
+  .feature p{
+    margin:0;
+    font-size:1.03rem;
+    line-height:1.6;
+    color:#395368;
+    max-width:46ch;
+  }
+
+  /* ---------- support ---------- */
+
+  .support{
+    background:var(--navy-deep);
+    padding:clamp(3.2rem,8vw,5.5rem) 0 clamp(2.4rem,6vw,3.5rem);
+  }
+
+  .support h2{color:var(--sky)}
+
+  .support-lede{
+    font-size:clamp(1.15rem,3.4vw,1.4rem);
+    max-width:40ch;
+    margin:0 0 1.9rem;
+    color:var(--paper);
+    font-weight:300;
+  }
+
+  .mailto{
+    font-family:var(--serif);
+    font-weight:500;
+    font-size:clamp(1.25rem,4.4vw,2rem);
+    color:var(--ember);
+    text-decoration:none;
+    border-bottom:2px solid rgba(251,146,60,.35);
+    padding-bottom:.12em;
+    transition:border-color .18s ease;
+    word-break:break-word;
+  }
+
+  .mailto:hover{border-bottom-color:var(--ember)}
+
+  .reply{
+    font-family:var(--sans);
+    font-size:.92rem;
+    color:var(--slate);
+    margin:1.7rem 0 0;
+    max-width:44ch;
+  }
+
+  footer{
+    border-top:1px solid rgba(255,255,255,.14);
+    margin-top:clamp(2.6rem,6vw,3.6rem);
+    padding-top:1.5rem;
+    font-family:var(--sans);
+    font-size:.86rem;
+    color:#8FA6B8;
+    display:flex;
+    flex-wrap:wrap;
+    gap:.6rem 1.8rem;
+    align-items:baseline;
+  }
+
+  footer a{text-decoration:none;border-bottom:1px solid rgba(143,166,184,.4)}
+  footer a:hover{color:var(--paper);border-bottom-color:var(--paper)}
+  .rights{margin-left:auto}
+
+  /* ---------- the one piece of motion ---------- */
+
+  .wave{
+    animation:breathe 4.2s ease-in-out infinite;
+    transform-origin:center;
+  }
+  .wave-2{animation-delay:.42s}
+  .wave-3{animation-delay:.84s}
+  .wave-4{animation-delay:.21s}
+  .wave-5{animation-delay:.63s}
+
+  @keyframes breathe{
+    0%,100%{opacity:.34}
+    50%{opacity:1}
+  }
+
+  .screen{animation:glow 3.1s ease-in-out infinite}
+  @keyframes glow{
+    0%,100%{opacity:.52}
+    50%{opacity:.86}
+  }
+
+  @media (prefers-reduced-motion:reduce){
+    .wave,.screen{animation:none;opacity:.85}
+  }
+
+  @media (max-width:40rem){
+    body{font-size:18px}
+    .feature{grid-template-columns:1fr;gap:.4rem}
+    .rights{margin-left:0;width:100%}
+  }
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <div class="wrap">
+
+    <svg class="mark" viewBox="44 71 217 153" role="img" aria-label="A phone speaking aloud to a listening person">
+      <!-- phone -->
+      <rect x="50" y="95" width="42" height="85" rx="7" fill="#8899AA" opacity=".95"/>
+      <rect class="screen" x="54" y="102" width="34" height="71" rx="4" fill="#38BDF8"/>
+      <rect x="63" y="102" width="16" height="3" rx="1.5" fill="#334455" opacity=".7"/>
+      <line x1="56" y1="108" x2="56" y2="168" stroke="#fff" stroke-opacity=".3" stroke-width="1.5"/>
+
+      <!-- voice travelling toward the listener -->
+      <g fill="none" stroke-linecap="round">
+        <path class="wave wave-4" d="M100 118 Q118 106 136 113 Q154 120 170 105" stroke="#38BDF8" stroke-opacity=".55" stroke-width="4"/>
+        <path class="wave wave-2" d="M100 128 Q118 119 136 125 Q154 131 170 120" stroke="#FDBA74" stroke-width="4"/>
+        <path class="wave" d="M100 138 Q118 132 136 138 Q154 144 170 138" stroke="#0EA5E9" stroke-width="4"/>
+        <path class="wave wave-3" d="M100 148 Q118 157 136 150 Q154 143 170 156" stroke="#FB923C" stroke-width="3"/>
+        <path class="wave wave-5" d="M100 158 Q118 170 136 162 Q154 154 170 170" stroke="#0EA5E9" stroke-width="3"/>
+      </g>
+
+      <!-- listener -->
+      <circle cx="215" cy="115" r="38" fill="#5ED4FF" opacity=".5"/>
+      <ellipse cx="215" cy="150" rx="16" ry="10" fill="#8899AA" opacity=".95"/>
+      <path d="M175 162 Q175 150 192 150 L238 150 Q255 150 255 162 L255 205 Q255 218 242 218 L188 218 Q175 218 175 205 Z" fill="#8899AA" opacity=".95"/>
+    </svg>
+
+    <h1 class="wordmark">myPrayers</h1>
+    <p class="tagline">A voice to your prayers&hellip;</p>
+    <p class="platform">For iPhone</p>
+
+  </div>
+</header>
+
+<main class="body">
+  <div class="wrap">
+
+    <p class="lede">Write your prayers once. Then listen, and pray along, while myPrayers reads them back to you.</p>
+
+    <h2>What it does</h2>
+
+    <div class="feature">
+      <h3>Your lists, read aloud</h3>
+      <p>Keep a list for each day, or each person. Press play and your prayers are spoken back to you, one at a time, for as long as you set.</p>
+    </div>
+
+    <div class="feature">
+      <h3>Scripture along the way</h3>
+      <p>Verses on prayer are read between your own, so the time is shaped by more than your own words.</p>
+    </div>
+
+    <div class="feature">
+      <h3>Music underneath</h3>
+      <p>Quiet instrumental music plays behind the voice. Choose a piece you like, or let it vary each time.</p>
+    </div>
+
+    <div class="feature">
+      <h3>A record of answers</h3>
+      <p>Mark a prayer answered and it moves to your archive with the date. Export the whole archive as a PDF whenever you want to look back.</p>
+    </div>
+
+    <div class="feature">
+      <h3>Praying with your church</h3>
+      <p>Join your church with an invite code to pray through lists the staff keeps, and send in requests of your own.</p>
+    </div>
+
+  </div>
+</main>
+
+<section class="support">
+  <div class="wrap">
+
+    <h2>Support</h2>
+    <p class="support-lede">Questions, trouble with the app, a feature you wish it had, or a request about your data &mdash; write to me directly.</p>
+
+    <a class="mailto" href="mailto:stracuzzidesign@icloud.com">stracuzzidesign@icloud.com</a>
+
+    <p class="reply">One person reads this inbox, so replies take a day or two. Telling me which iPhone you have and what you were doing at the time helps a great deal.</p>
+
+    <footer>
+      <span>myPrayers</span>
+      <!-- Replace href="#" with the Termly privacy policy URL once it's published. -->
+      <a href="#">Privacy policy</a>
+      <span class="rights">Stracuzzi Design</span>
+    </footer>
+
+  </div>
+</section>
+
+</body>
+</html>
